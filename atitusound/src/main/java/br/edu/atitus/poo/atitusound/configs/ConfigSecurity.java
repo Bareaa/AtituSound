@@ -25,7 +25,7 @@ public class ConfigSecurity {
     public SecurityFilterChain getFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/authentication/**", "/auth/signup", "/swagger-ui**", "swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/authentication/**", "/auth/**", "/swagger-ui**", "swagger-ui/**", "/v3/api-docs/**").permitAll().anyRequest().authenticated())
                 .addFilterBefore(this.authTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
